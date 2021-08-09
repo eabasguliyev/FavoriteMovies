@@ -12,15 +12,15 @@ namespace FavoriteMovies.Domain.Models
         }
 
         public int DirectorId { get; set; }
-        public Person Director { get; set; }
-        public List<MovieAndWriter> Writers { get; set; }
-        public List<MovieAndActor> Actors { get; set; }
+        public virtual Person Director { get; set; }
+        public virtual List<MovieAndWriter> Writers { get; set; }
+        public virtual List<MovieAndActor> Actors { get; set; }
         public string Plot { get; set; }
         public int CountryId { get; set; }
-        public Country Country { get; set; }
+        public virtual Country Country { get; set; }
         public int LanguageId { get; set; }
-        public Language Language { get; set; }
-        public List<MovieAndGenre> Genres { get; set; }
+        public virtual Language Language { get; set; }
+        public virtual List<MovieAndGenre> Genres { get; set; }
 
     }
 }

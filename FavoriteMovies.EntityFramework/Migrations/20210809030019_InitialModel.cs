@@ -46,7 +46,7 @@ namespace FavoriteMovies.EntityFramework.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Persons",
+                name: "People",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -55,7 +55,7 @@ namespace FavoriteMovies.EntityFramework.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Persons", x => x.Id);
+                    table.PrimaryKey("PK_People", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -90,15 +90,15 @@ namespace FavoriteMovies.EntityFramework.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Movies_Persons_DirectorId",
+                        name: "FK_Movies_People_DirectorId",
                         column: x => x.DirectorId,
-                        principalTable: "Persons",
+                        principalTable: "People",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "MovieAndActor",
+                name: "MovieAndActors",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -108,22 +108,22 @@ namespace FavoriteMovies.EntityFramework.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MovieAndActor", x => x.Id);
+                    table.PrimaryKey("PK_MovieAndActors", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_MovieAndActor_Movies_MovieId",
+                        name: "FK_MovieAndActors_Movies_MovieId",
                         column: x => x.MovieId,
                         principalTable: "Movies",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_MovieAndActor_Persons_ActorId",
+                        name: "FK_MovieAndActors_People_ActorId",
                         column: x => x.ActorId,
-                        principalTable: "Persons",
+                        principalTable: "People",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "MovieAndGenre",
+                name: "MovieAndGenres",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -133,15 +133,15 @@ namespace FavoriteMovies.EntityFramework.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MovieAndGenre", x => x.Id);
+                    table.PrimaryKey("PK_MovieAndGenres", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_MovieAndGenre_Genres_GenreId",
+                        name: "FK_MovieAndGenres_Genres_GenreId",
                         column: x => x.GenreId,
                         principalTable: "Genres",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_MovieAndGenre_Movies_MovieId",
+                        name: "FK_MovieAndGenres_Movies_MovieId",
                         column: x => x.MovieId,
                         principalTable: "Movies",
                         principalColumn: "Id",
@@ -149,7 +149,7 @@ namespace FavoriteMovies.EntityFramework.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MovieAndWriter",
+                name: "MovieAndWriters",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -159,48 +159,48 @@ namespace FavoriteMovies.EntityFramework.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MovieAndWriter", x => x.Id);
+                    table.PrimaryKey("PK_MovieAndWriters", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_MovieAndWriter_Movies_MovieId",
+                        name: "FK_MovieAndWriters_Movies_MovieId",
                         column: x => x.MovieId,
                         principalTable: "Movies",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_MovieAndWriter_Persons_WriterId",
+                        name: "FK_MovieAndWriters_People_WriterId",
                         column: x => x.WriterId,
-                        principalTable: "Persons",
+                        principalTable: "People",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_MovieAndActor_ActorId",
-                table: "MovieAndActor",
+                name: "IX_MovieAndActors_ActorId",
+                table: "MovieAndActors",
                 column: "ActorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MovieAndActor_MovieId",
-                table: "MovieAndActor",
+                name: "IX_MovieAndActors_MovieId",
+                table: "MovieAndActors",
                 column: "MovieId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MovieAndGenre_GenreId",
-                table: "MovieAndGenre",
+                name: "IX_MovieAndGenres_GenreId",
+                table: "MovieAndGenres",
                 column: "GenreId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MovieAndGenre_MovieId",
-                table: "MovieAndGenre",
+                name: "IX_MovieAndGenres_MovieId",
+                table: "MovieAndGenres",
                 column: "MovieId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MovieAndWriter_MovieId",
-                table: "MovieAndWriter",
+                name: "IX_MovieAndWriters_MovieId",
+                table: "MovieAndWriters",
                 column: "MovieId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MovieAndWriter_WriterId",
-                table: "MovieAndWriter",
+                name: "IX_MovieAndWriters_WriterId",
+                table: "MovieAndWriters",
                 column: "WriterId");
 
             migrationBuilder.CreateIndex(
@@ -222,13 +222,13 @@ namespace FavoriteMovies.EntityFramework.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "MovieAndActor");
+                name: "MovieAndActors");
 
             migrationBuilder.DropTable(
-                name: "MovieAndGenre");
+                name: "MovieAndGenres");
 
             migrationBuilder.DropTable(
-                name: "MovieAndWriter");
+                name: "MovieAndWriters");
 
             migrationBuilder.DropTable(
                 name: "Genres");
@@ -243,7 +243,7 @@ namespace FavoriteMovies.EntityFramework.Migrations
                 name: "Languages");
 
             migrationBuilder.DropTable(
-                name: "Persons");
+                name: "People");
         }
     }
 }

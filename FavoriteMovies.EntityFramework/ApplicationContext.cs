@@ -9,6 +9,13 @@ namespace FavoriteMovies.EntityFramework
     public class ApplicationContext:DbContext
     {
         public DbSet<MovieDetail> Movies { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<Genre> Genres { get; set; }
+        public DbSet<Language> Languages { get; set; }
+        public DbSet<MovieAndActor> MovieAndActors { get; set; }
+        public DbSet<MovieAndGenre> MovieAndGenres { get; set; }
+        public DbSet<MovieAndWriter> MovieAndWriters { get; set; }
+        public DbSet<Person> People { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -17,23 +24,25 @@ namespace FavoriteMovies.EntityFramework
                 .AddJsonFile("AppSettings.json", false)
                 .Build();
 
-            optionsBuilder.UseSqlServer(configuration.GetConnectionString("FavoriteMovies"));
+            optionsBuilder.UseLazyLoadingProxies()
+                .UseSqlServer(configuration.GetConnectionString("FavoriteMovies"));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Person>().ToTable("Persons");
+            //modelBuilder.Entity<Person>().ToTable("People");
             modelBuilder.Entity<Person>().Property(p => p.Name).HasMaxLength(255).IsRequired();
 
-            modelBuilder.Entity<Genre>().ToTable("Genres");
+            //modelBuilder.Entity<Genre>().ToTable("Genres");
             modelBuilder.Entity<Genre>().Property(g => g.Name).HasMaxLength(255).IsRequired();
 
-            modelBuilder.Entity<Language>().ToTable("Languages");
+            //modelBuilder.Entity<Language>().ToTable("Languages");
             modelBuilder.Entity<Language>().Property(l => l.Name).HasMaxLength(255).IsRequired();
 
-            modelBuilder.Entity<Country>().ToTable("Countries");
+            //modelBuilder.Entity<Country>().ToTable("Countries");
             modelBuilder.Entity<Country>().Property(c => c.Name).HasMaxLength(255).IsRequired();
 
+            //modelBuilder.Entity<MovieDetail>().ToTable("Movies");
             modelBuilder.Entity<MovieDetail>().Property(m => m.Title).IsRequired().HasMaxLength(255);
             modelBuilder.Entity<MovieDetail>().Property(m => m.ImdbId).HasMaxLength(255);
             modelBuilder.Entity<MovieDetail>().Property(m => m.PosterLink).HasMaxLength(255);

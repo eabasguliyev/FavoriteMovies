@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FavoriteMovies.EntityFramework.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20210809022618_InitialModel")]
+    [Migration("20210809030019_InitialModel")]
     partial class InitialModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -90,7 +90,7 @@ namespace FavoriteMovies.EntityFramework.Migrations
 
                     b.HasIndex("MovieId");
 
-                    b.ToTable("MovieAndActor");
+                    b.ToTable("MovieAndActors");
                 });
 
             modelBuilder.Entity("FavoriteMovies.Domain.Models.MovieAndGenre", b =>
@@ -112,7 +112,7 @@ namespace FavoriteMovies.EntityFramework.Migrations
 
                     b.HasIndex("MovieId");
 
-                    b.ToTable("MovieAndGenre");
+                    b.ToTable("MovieAndGenres");
                 });
 
             modelBuilder.Entity("FavoriteMovies.Domain.Models.MovieAndWriter", b =>
@@ -134,7 +134,7 @@ namespace FavoriteMovies.EntityFramework.Migrations
 
                     b.HasIndex("WriterId");
 
-                    b.ToTable("MovieAndWriter");
+                    b.ToTable("MovieAndWriters");
                 });
 
             modelBuilder.Entity("FavoriteMovies.Domain.Models.MovieDetail", b =>
@@ -200,7 +200,7 @@ namespace FavoriteMovies.EntityFramework.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Persons");
+                    b.ToTable("People");
                 });
 
             modelBuilder.Entity("FavoriteMovies.Domain.Models.MovieAndActor", b =>

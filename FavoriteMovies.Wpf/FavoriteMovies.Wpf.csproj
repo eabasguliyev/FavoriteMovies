@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FavoriteMovies.Domain\FavoriteMovies.Domain.csproj" />
+    <ProjectReference Include="..\FavoriteMovies.EntityFramework\FavoriteMovies.EntityFramework.csproj" />
+    <ProjectReference Include="..\FavoriteMovies.OmdbApi\FavoriteMovies.OmdbApi.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
+
+</Project>
