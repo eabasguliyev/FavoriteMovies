@@ -1,0 +1,8 @@
+.vs
+FavoriteMovies.Domain/bin
+FavoriteMovies.Domain/obj
+FavoriteMovies.EntityFramework/bin
+FavoriteMovies.EntityFramework/obj
+FavoriteMovies.OmdbApi/bin
+FavoriteMovies.OmdbApi/obj
+FavoriteMovies.Test
