@@ -10,7 +10,7 @@ namespace FavoriteMovies.Wpf
     {
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

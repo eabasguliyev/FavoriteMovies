@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace FavoriteMovies.OmdbApi.Services
 {
-    public class MovieService:IMovieService
+    public class MovieService:IMovieService, IMovieDiscoverService
     {
         private readonly string _apiKey;
 

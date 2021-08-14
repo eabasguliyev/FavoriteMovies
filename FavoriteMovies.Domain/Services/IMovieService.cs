@@ -4,9 +4,8 @@ using FavoriteMovies.Domain.Services.Results;
 
 namespace FavoriteMovies.Domain.Services
 {
-    public interface IMovieDataService
+    public interface IMovieService
     {
-        Task<MovieDetailResult> GetMovieAsync(string imdbId);
         Task<List<MovieResult>> GetMoviesAsync(string name);
     }
 }
