@@ -13,7 +13,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Startup\" />
     <Folder Include="ViewModels\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.2.0" />
+    <PackageReference Include="Prism.Core" Version="8.1.97" />
   </ItemGroup>
 
 </Project>

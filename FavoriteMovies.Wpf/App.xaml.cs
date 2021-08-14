@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using FavoriteMovies.Wpf.Startup;
 
 namespace FavoriteMovies.Wpf
 {
@@ -10,6 +11,9 @@ namespace FavoriteMovies.Wpf
     {
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
+            var bootstrapper = new Bootstrapper();
+
+            var container = bootstrapper.Bootstrap();
             
         }
     }
