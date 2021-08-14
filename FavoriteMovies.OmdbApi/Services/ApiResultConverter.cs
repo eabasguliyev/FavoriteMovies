@@ -69,20 +69,53 @@ namespace FavoriteMovies.OmdbApi.Services
                 });
             }
 
-            movieDetail.Director = new Person()
-            {
-                Name = movieDetailResult.Director.Trim()
-            };
+            //movieDetail.Director = new Person()
+            //{
+            //    Name = movieDetailResult.Director.Trim()
+            //};
 
-            movieDetail.Country = new Country()
-            {
-                Name = movieDetailResult.Country.Trim()
-            };
+            //movieDetail.Country = new Country()
+            //{
+            //    Name = movieDetailResult.Country.Trim()
+            //};
 
-            movieDetail.Language = new Language()
+            //movieDetail.Language = new Language()
+            //{
+            //    Name = movieDetailResult.Language.Trim()
+            //};
+
+            var countries = ParseData<Country>(movieDetailResult.Country);
+
+            foreach (var country in countries)
             {
-                Name = movieDetailResult.Language.Trim()
-            };
+                movieDetail.Countries.Add(new MovieAndCountry()
+                {
+                    Movie = movieDetail,
+                    Country = country
+                });
+            }
+
+            var directors = ParseData<Person>(movieDetailResult.Director);
+
+            foreach (var director in directors)
+            {
+                movieDetail.Directors.Add(new MovieAndDirector()
+                {
+                    Movie = movieDetail,
+                    Director = director
+                });
+            }
+
+            var languages = ParseData<Language>(movieDetailResult.Language);
+
+            foreach (var language in languages)
+            {
+                movieDetail.Languages.Add(new MovieAndLanguage()
+                {
+                    Movie = movieDetail,
+                    Language = language
+                });
+            }
 
             var genres = ParseData<Genre>(movieDetailResult.Genre);
 

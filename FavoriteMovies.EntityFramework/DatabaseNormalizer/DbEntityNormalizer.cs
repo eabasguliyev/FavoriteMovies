@@ -13,20 +13,34 @@ namespace FavoriteMovies.EntityFramework.DatabaseNormalizer
         }
         public void MovieEntityNormalizer(MovieDetail movieDetail)
         {
-            var director = _context.People.FirstOrDefault(p => p.Name == movieDetail.Director.Name);
+            foreach (var movieAndDirector in movieDetail.Directors)
+            {
+                var director = _context.People.FirstOrDefault(p => p.Name == movieAndDirector.Director.Name);
 
-            if (director != null)
-                movieDetail.Director = director;
+                if (director != null)
+                    movieAndDirector.Director = director;
+            }
 
-            var country = _context.Countries.SingleOrDefault(c => c.Name == movieDetail.Country.Name);
+            //var country = _context.Countries.SingleOrDefault(c => c.Name == movieDetail.Country.Name);
 
-            if (country != null)
-                movieDetail.Country = country;
+            //if (country != null)
+            //    movieDetail.Country = country;
 
-            var language = _context.Languages.SingleOrDefault(l => l.Name == movieDetail.Language.Name);
+            foreach (var movieAndCountry in movieDetail.Countries)
+            {
+                var country = _context.Countries.FirstOrDefault(c => c.Name == movieAndCountry.Country.Name);
 
-            if (language != null)
-                movieDetail.Language = language;
+                if (country != null)
+                    movieAndCountry.Country = country;
+            }
+
+            foreach (var movieAndLanguage in movieDetail.Languages)
+            {
+                var language = _context.Languages.FirstOrDefault(l => l.Name == movieAndLanguage.Language.Name);
+
+                if (language != null)
+                    movieAndLanguage.Language = language;
+            }
 
             foreach (var movieAndWriter in movieDetail.Writers)
             {

@@ -16,11 +16,14 @@ namespace FavoriteMovies.Wpf.Wrappers
 
         public short Year => Model.Year;
 
-        public string Language => Model.Language.Name;
+        //public string Language => Model.Language.Name;
+        public List<Language> Languages => Model.Languages.Select(l => l.Language).ToList();
 
-        public string Director => Model.Director.Name;
-        public string Country => Model.Country.Name;
+        //public string Director => Model.Director.Name;
+        public List<Person> Directors => Model.Directors.Select(d => d.Director).ToList();
+        //public string Country => Model.Country.Name;
 
+        public List<Country> Countries => Model.Countries.Select(c => c.Country).ToList();
         public List<Person> Writers => Model.Writers.Select(w => w.Writer).ToList();
         public List<Person> Actors => Model.Actors.Select(a => a.Actor).ToList();
         public List<Genre> Genres => Model.Genres.Select(g => g.Genre).ToList();

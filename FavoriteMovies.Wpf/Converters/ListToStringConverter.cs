@@ -13,13 +13,26 @@ namespace FavoriteMovies.Wpf.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var people = value as List<Person>;
+            dynamic values = null;
+
+            if (value is List<Person> persons)
+            {
+                values = persons;
+            }
+            else if (value is List<Language> languages)
+            {
+                values = languages;
+            }
+            else if (value is List<Country> countries)
+            {
+                values = countries;
+            }
 
             var strBuilder = new StringBuilder(parameter as String);
 
-            for (int i = 0, length = people.Count; i < length; i++)
+            for (int i = 0, length = values.Count; i < length; i++)
             {
-                strBuilder.Append(people[i].Name);
+                strBuilder.Append(values[i].Name);
 
                 if (i != length - 1)
                     strBuilder.Append(", ");

@@ -3,14 +3,16 @@ using FavoriteMovies.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FavoriteMovies.EntityFramework.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20210814181651_AddNewTables")]
+    partial class AddNewTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -91,28 +93,6 @@ namespace FavoriteMovies.EntityFramework.Migrations
                     b.ToTable("MovieAndActors");
                 });
 
-            modelBuilder.Entity("FavoriteMovies.Domain.Models.MovieAndCountry", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CountryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MovieId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CountryId");
-
-                    b.HasIndex("MovieId");
-
-                    b.ToTable("MovieAndCountry");
-                });
-
             modelBuilder.Entity("FavoriteMovies.Domain.Models.MovieAndDirector", b =>
                 {
                     b.Property<int>("Id")
@@ -132,7 +112,7 @@ namespace FavoriteMovies.EntityFramework.Migrations
 
                     b.HasIndex("MovieId");
 
-                    b.ToTable("MovieAndDirectors");
+                    b.ToTable("MovieAndDirector");
                 });
 
             modelBuilder.Entity("FavoriteMovies.Domain.Models.MovieAndGenre", b =>
@@ -176,7 +156,7 @@ namespace FavoriteMovies.EntityFramework.Migrations
 
                     b.HasIndex("MovieId");
 
-                    b.ToTable("MovieAndLanguages");
+                    b.ToTable("MovieAndLanguage");
                 });
 
             modelBuilder.Entity("FavoriteMovies.Domain.Models.MovieAndWriter", b =>
@@ -235,6 +215,8 @@ namespace FavoriteMovies.EntityFramework.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CountryId");
+
                     b.ToTable("Movies");
                 });
 
@@ -270,25 +252,6 @@ namespace FavoriteMovies.EntityFramework.Migrations
                         .IsRequired();
 
                     b.Navigation("Actor");
-
-                    b.Navigation("Movie");
-                });
-
-            modelBuilder.Entity("FavoriteMovies.Domain.Models.MovieAndCountry", b =>
-                {
-                    b.HasOne("FavoriteMovies.Domain.Models.Country", "Country")
-                        .WithMany()
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FavoriteMovies.Domain.Models.MovieDetail", "Movie")
-                        .WithMany("Countries")
-                        .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Country");
 
                     b.Navigation("Movie");
                 });
@@ -371,9 +334,18 @@ namespace FavoriteMovies.EntityFramework.Migrations
 
             modelBuilder.Entity("FavoriteMovies.Domain.Models.MovieDetail", b =>
                 {
-                    b.Navigation("Actors");
+                    b.HasOne("FavoriteMovies.Domain.Models.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Countries");
+                    b.Navigation("Country");
+                });
+
+            modelBuilder.Entity("FavoriteMovies.Domain.Models.MovieDetail", b =>
+                {
+                    b.Navigation("Actors");
 
                     b.Navigation("Directors");
 

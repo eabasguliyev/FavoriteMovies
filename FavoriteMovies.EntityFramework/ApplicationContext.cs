@@ -15,6 +15,8 @@ namespace FavoriteMovies.EntityFramework
         public DbSet<MovieAndActor> MovieAndActors { get; set; }
         public DbSet<MovieAndGenre> MovieAndGenres { get; set; }
         public DbSet<MovieAndWriter> MovieAndWriters { get; set; }
+        public DbSet<MovieAndLanguage> MovieAndLanguages { get; set; }
+        public DbSet<MovieAndDirector> MovieAndDirectors { get; set; }
         public DbSet<Person> People { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -47,8 +49,7 @@ namespace FavoriteMovies.EntityFramework
             modelBuilder.Entity<MovieDetail>().Property(m => m.ImdbId).HasMaxLength(255);
             modelBuilder.Entity<MovieDetail>().Property(m => m.PosterLink).HasMaxLength(255);
             modelBuilder.Entity<MovieDetail>().Property(m => m.CountryId).IsRequired();
-            modelBuilder.Entity<MovieDetail>().Property(m => m.DirectorId).IsRequired();
-            modelBuilder.Entity<MovieDetail>().Property(m => m.LanguageId).IsRequired();
+            
 
             modelBuilder.Entity<MovieAndActor>().Property(ma => ma.MovieId).IsRequired();
             modelBuilder.Entity<MovieAndActor>().Property(ma => ma.ActorId).IsRequired();
@@ -63,6 +64,17 @@ namespace FavoriteMovies.EntityFramework
             modelBuilder.Entity<MovieAndWriter>().HasOne(mw => mw.Movie).WithMany(md => md.Writers)
                 .OnDelete(DeleteBehavior.NoAction);
 
+            modelBuilder.Entity<MovieAndDirector>().Property(md => md.MovieId).IsRequired();
+            modelBuilder.Entity<MovieAndDirector>().Property(md => md.DirectorId).IsRequired();
+
+            modelBuilder.Entity<MovieAndDirector>().HasOne(md => md.Movie).WithMany(md => md.Directors)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<MovieAndLanguage>().Property(ml => ml.MovieId).IsRequired();
+            modelBuilder.Entity<MovieAndLanguage>().Property(ml => ml.LanguageId).IsRequired();
+
+            modelBuilder.Entity<MovieAndCountry>().Property(ml => ml.MovieId).IsRequired();
+            modelBuilder.Entity<MovieAndCountry>().Property(ml => ml.CountryId).IsRequired();
             base.OnModelCreating(modelBuilder);
         }
     }
