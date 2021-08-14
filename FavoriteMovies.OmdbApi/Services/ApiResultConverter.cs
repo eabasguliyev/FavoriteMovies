@@ -8,13 +8,12 @@ namespace FavoriteMovies.OmdbApi.Services
 {
     public class ApiResultConverter
     {
-        public List<Movie> ConvertMovies(List<MovieResult> movieResults)
+        public IEnumerable<Movie> ConvertMovies(List<MovieResult> movieResults)
         {
-            var movies = new List<Movie>();
-
-            movieResults.ForEach(mr => movies.Add(ConvertMovie(mr)));
-
-            return movies;
+            foreach (var movieResult in movieResults)
+            {
+                yield return ConvertMovie(movieResult);
+            }
         }
 
         public Movie ConvertMovie(MovieResult movieResult)

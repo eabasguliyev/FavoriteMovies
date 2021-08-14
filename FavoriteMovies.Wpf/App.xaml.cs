@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Windows;
+using Autofac;
 using FavoriteMovies.Wpf.Startup;
+using FavoriteMovies.Wpf.ViewModels;
+using FavoriteMovies.Wpf.Views;
 
 namespace FavoriteMovies.Wpf
 {
@@ -14,7 +17,12 @@ namespace FavoriteMovies.Wpf
             var bootstrapper = new Bootstrapper();
 
             var container = bootstrapper.Bootstrap();
-            
+
+            var window = container.Resolve<MainWindowView>();
+
+            window.DataContext = container.Resolve<IMainWindowViewModel>();
+
+            window.Show();
         }
     }
 }

@@ -15,7 +15,9 @@ namespace FavoriteMovies.Wpf.Startup
 
             builder.RegisterType<MainWindowView>();
 
-            builder.RegisterType<MainWindowViewModel>();
+            builder.RegisterType<MainWindowViewModel>().As<IMainWindowViewModel>();
+
+            builder.RegisterType<MovieDiscoverViewModel>();
 
             return builder.Build();
         }

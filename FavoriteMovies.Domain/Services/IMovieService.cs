@@ -6,6 +6,6 @@ namespace FavoriteMovies.Domain.Services
 {
     public interface IMovieService
     {
-        Task<List<MovieResult>> GetMoviesAsync(string name);
+        Task<MovieDetailResult> GetMovieAsync(string imdbId);
     }
 }
