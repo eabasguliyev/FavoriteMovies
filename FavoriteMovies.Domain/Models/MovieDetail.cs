@@ -18,7 +18,6 @@ namespace FavoriteMovies.Domain.Models
         public virtual List<MovieAndWriter> Writers { get; set; }
         public virtual List<MovieAndActor> Actors { get; set; }
         public string Plot { get; set; }
-        public int CountryId { get; set; }
         public virtual List<MovieAndCountry> Countries { get; set; }
 
         public virtual List<MovieAndLanguage> Languages { get; set; }

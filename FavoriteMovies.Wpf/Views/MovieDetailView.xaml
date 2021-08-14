@@ -92,7 +92,7 @@
 
             <Button Grid.Row="1" Width="200" Content="Add to favorites list"
                     Margin="10 0 10 10"
-                    HorizontalAlignment="Right"/>
+                    HorizontalAlignment="Right" Command="{Binding DataContext.AddFavoriteCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
             <Button Grid.Row="1" Width="200" Content="Remove from favorites list"
                     Margin="10 0 10 10"
                     Visibility="Collapsed"

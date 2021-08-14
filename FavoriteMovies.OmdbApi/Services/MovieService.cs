@@ -2,7 +2,8 @@
 using System.IO;
 using System.Threading.Tasks;
 using FavoriteMovies.Domain.Services;
-using FavoriteMovies.Domain.Services.Results;
+using FavoriteMovies.Domain.Services.Api;
+using FavoriteMovies.Domain.Services.Api.Results;
 using Microsoft.Extensions.Configuration;
 
 namespace FavoriteMovies.OmdbApi.Services

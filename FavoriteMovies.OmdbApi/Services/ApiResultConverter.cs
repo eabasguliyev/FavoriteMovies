@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using FavoriteMovies.Domain.Models;
-using FavoriteMovies.Domain.Services.Results;
+using FavoriteMovies.Domain.Services.Api.Results;
 
 namespace FavoriteMovies.OmdbApi.Services
 {
@@ -19,8 +19,9 @@ namespace FavoriteMovies.OmdbApi.Services
         public Movie ConvertMovie(MovieResult movieResult)
         {
             short.TryParse(movieResult.Year, out var movieYear);
+            var type = movieResult.Type[0].ToString().ToUpper() + movieResult.Type.ToLower().Substring(1);
 
-            Enum.TryParse(typeof(MovieType), movieResult.Type, out object movieType);
+            Enum.TryParse(typeof(MovieType), type , out object movieType);
 
             var movie = new MovieDetail()
             {

@@ -1,4 +1,4 @@
-﻿namespace FavoriteMovies.Domain.Services.Results
+﻿namespace FavoriteMovies.Domain.Services.Api.Results
 {
     public class Rating
     {

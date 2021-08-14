@@ -48,7 +48,6 @@ namespace FavoriteMovies.EntityFramework
             modelBuilder.Entity<MovieDetail>().Property(m => m.Title).IsRequired().HasMaxLength(255);
             modelBuilder.Entity<MovieDetail>().Property(m => m.ImdbId).HasMaxLength(255);
             modelBuilder.Entity<MovieDetail>().Property(m => m.PosterLink).HasMaxLength(255);
-            modelBuilder.Entity<MovieDetail>().Property(m => m.CountryId).IsRequired();
             
 
             modelBuilder.Entity<MovieAndActor>().Property(ma => ma.MovieId).IsRequired();

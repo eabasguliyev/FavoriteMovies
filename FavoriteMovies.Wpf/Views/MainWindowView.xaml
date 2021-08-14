@@ -6,7 +6,6 @@
         xmlns:view="clr-namespace:FavoriteMovies.Wpf.Views"
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:viewModel="clr-namespace:FavoriteMovies.Wpf.ViewModels"
-        xmlns:views="clr-namespace:FavoriteMovies.Wpf.Views"
         mc:Ignorable="d"
         Title="MainWindowView" Height="450" Width="800">
     <Window.Resources>
@@ -16,6 +15,9 @@
         <DataTemplate DataType="{x:Type viewModel:MovieDetailViewModel}">
             <view:MovieDetailView/>
         </DataTemplate>
+        <!--<DataTemplate DataType="{x:Type viewModel:NavigationMenuViewModel}">
+            <view:NavigationMenuView/>
+        </DataTemplate>-->
     </Window.Resources>
     <b:Interaction.Triggers>
         <b:EventTrigger EventName="Loaded">
@@ -27,6 +29,8 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="7*"/>
         </Grid.ColumnDefinitions>
+
+        <view:NavigationMenuView Grid.Column="0" DataContext="{Binding NavigationMenuViewModel}"/>
 
         <ContentControl Grid.Column="1" Content="{Binding CurrentViewModel}"/>
     </Grid>
