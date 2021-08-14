@@ -32,6 +32,16 @@ namespace FavoriteMovies.Wpf.Wrappers
             }
         }
 
+        public string ImdbId
+        {
+            get => Model.ImdbId;
+            set
+            {
+                Model.ImdbId = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string GetShortTitle(string title)
         {
             if (String.IsNullOrWhiteSpace(title))

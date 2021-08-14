@@ -1,4 +1,5 @@
-﻿using FavoriteMovies.Wpf.ViewModels;
+﻿using System.Windows.Documents;
+using FavoriteMovies.Wpf.ViewModels;
 
 namespace FavoriteMovies.Wpf.Wrappers
 {

@@ -4,8 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:view="clr-namespace:FavoriteMovies.Wpf.Views"
-        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
-        xmlns:ie="http://schemas.microsoft.com/expression/2010/interactions" 
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:viewModel="clr-namespace:FavoriteMovies.Wpf.ViewModels"
         xmlns:views="clr-namespace:FavoriteMovies.Wpf.Views"
@@ -14,6 +12,9 @@
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewModel:MovieDiscoverViewModel}">
             <view:MovieDiscoverView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:MovieDetailViewModel}">
+            <view:MovieDetailView/>
         </DataTemplate>
     </Window.Resources>
     <b:Interaction.Triggers>

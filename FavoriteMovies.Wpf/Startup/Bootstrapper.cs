@@ -2,6 +2,7 @@
 using FavoriteMovies.OmdbApi.Services;
 using FavoriteMovies.Wpf.ViewModels;
 using FavoriteMovies.Wpf.Views;
+using Prism.Events;
 
 namespace FavoriteMovies.Wpf.Startup
 {
@@ -16,8 +17,12 @@ namespace FavoriteMovies.Wpf.Startup
             builder.RegisterType<MainWindowView>();
 
             builder.RegisterType<MainWindowViewModel>().As<IMainWindowViewModel>();
-
             builder.RegisterType<MovieDiscoverViewModel>();
+            builder.RegisterType<MovieDetailViewModel>();
+
+            builder.RegisterType<ApiResultConverter>();
+
+            builder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();
 
             return builder.Build();
         }

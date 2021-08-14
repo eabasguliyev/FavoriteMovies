@@ -13,6 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Events\" />
+    <Folder Include="Converters\" />
     <Folder Include="Startup\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
