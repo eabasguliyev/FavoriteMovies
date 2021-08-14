@@ -7,5 +7,6 @@ namespace FavoriteMovies.Domain.Services
     {
         Task AddAsync(MovieDetail movie);
         Task RemoveAsync(MovieDetail movie);
+        Task<bool> IsExistAsync(MovieDetail movie);
     }
 }

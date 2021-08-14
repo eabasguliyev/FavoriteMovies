@@ -1,7 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using FavoriteMovies.Domain.Models;
 using FavoriteMovies.Domain.Services;
 using FavoriteMovies.EntityFramework;
+using Microsoft.EntityFrameworkCore;
 
 namespace FavoriteMovies.Wpf.Data
 {
@@ -23,6 +25,11 @@ namespace FavoriteMovies.Wpf.Data
         {
             _context.Movies.Remove(movie);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<bool> IsExistAsync(MovieDetail movie)
+        {
+            return await _context.Movies.AnyAsync(m => m.ImdbId == movie.ImdbId);
         }
     }
 }

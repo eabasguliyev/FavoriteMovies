@@ -18,6 +18,8 @@ namespace FavoriteMovies.Wpf.ViewModels
         private readonly ApiResultConverter _apiResultConverter;
         private MovieDetailWrapper _movie;
         private bool _entityNormalized;
+        private bool _isFavorite;
+
         public MovieDetailViewModel(IMovieService movieService, IFavoriteMovieDataService favoriteMovieDataService, DbEntityNormalizer dbEntityNormalizer,
             ApiResultConverter apiResultConverter)
         {
@@ -27,6 +29,7 @@ namespace FavoriteMovies.Wpf.ViewModels
             _apiResultConverter = apiResultConverter;
 
             AddFavoriteCommand = new DelegateCommand(OnAddFavoriteExecuteAsync);
+            //LoadCommand = new DelegateCommand(OnLoadExecuteAsync);
         }
 
         public MovieDetailWrapper Movie
@@ -39,11 +42,24 @@ namespace FavoriteMovies.Wpf.ViewModels
             }
         }
 
+        public bool IsFavorite
+        {
+            get => _isFavorite;
+            private set
+            {
+                _isFavorite = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ICommand AddFavoriteCommand { get; }
+        //public ICommand LoadCommand { get; }
 
         public async void LoadMovieAsync(string imdbId)
         {
             Movie = new MovieDetailWrapper(_apiResultConverter.ConvertMovieDetail(await _movieService.GetMovieAsync(imdbId)));
+
+            IsFavorite = await _favoriteMovieDataService.IsExistAsync(Movie.Model);
         }
         private async void OnAddFavoriteExecuteAsync()
         {

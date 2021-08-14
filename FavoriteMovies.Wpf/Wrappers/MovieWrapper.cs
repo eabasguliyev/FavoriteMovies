@@ -12,35 +12,11 @@ namespace FavoriteMovies.Wpf.Wrappers
 
         public string ShortTitle { get; }
 
-        public string Title
-        {
-            get => Model.Title;
-            set
-            {
-                Model.Title = value;
-                OnPropertyChanged();
-            }
-        }
+        public string Title => Model.Title;
 
-        public string PosterLink
-        {
-            get => Model.PosterLink;
-            set
-            {
-                Model.PosterLink = value;
-                OnPropertyChanged();
-            }
-        }
+        public string PosterLink => Model.PosterLink;
 
-        public string ImdbId
-        {
-            get => Model.ImdbId;
-            set
-            {
-                Model.ImdbId = value;
-                OnPropertyChanged();
-            }
-        }
+        public string ImdbId => Model.ImdbId;
 
         private string GetShortTitle(string title)
         {
