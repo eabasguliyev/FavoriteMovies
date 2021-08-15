@@ -48,7 +48,7 @@ namespace FavoriteMovies.OmdbApi.Services
         {
             var movieDetail = ConvertMovie(movieDetailResult) as MovieDetail;
 
-            var actors = ParseData<Person>(movieDetailResult.Actors);
+            var actors = ParseData<Actor>(movieDetailResult.Actors);
 
             foreach (var actor in actors)
             {
@@ -59,7 +59,7 @@ namespace FavoriteMovies.OmdbApi.Services
                 });
             }
 
-            var writers = ParseData<Person>(movieDetailResult.Writer);
+            var writers = ParseData<Writer>(movieDetailResult.Writer);
 
             foreach (var writer in writers)
             {
@@ -96,7 +96,7 @@ namespace FavoriteMovies.OmdbApi.Services
                 });
             }
 
-            var directors = ParseData<Person>(movieDetailResult.Director);
+            var directors = ParseData<Director>(movieDetailResult.Director);
 
             foreach (var director in directors)
             {

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using FavoriteMovies.Domain.Models;
 using FavoriteMovies.Domain.Services;
@@ -42,6 +43,11 @@ namespace FavoriteMovies.Wpf.Data
         public async Task<bool> IsExistAsync(MovieDetail movie)
         {
             return await _context.Movies.AnyAsync(m => m.ImdbId == movie.ImdbId);
+        }
+
+        public async Task<List<MovieDetail>> GetAllAsync()
+        {
+            return await Task.Factory.StartNew(() => _context.Movies.ToList());
         }
     }
 }

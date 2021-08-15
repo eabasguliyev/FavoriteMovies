@@ -19,9 +19,6 @@ namespace FavoriteMovies.Wpf.ViewModels
         private readonly ApiResultConverter _apiResultConverter;
         private MovieDetailWrapper _movie;
         private bool _isFavorite;
-        private MovieDetailResult _apiResponse;
-        private MovieDetail _movieDetail;
-        private bool _removed;
         public MovieDetailViewModel(IMovieService movieService, IFavoriteMovieDataService favoriteMovieDataService, DbEntityNormalizer dbEntityNormalizer,
             ApiResultConverter apiResultConverter)
         {
@@ -61,22 +58,15 @@ namespace FavoriteMovies.Wpf.ViewModels
 
         public async void LoadMovieAsync(string imdbId)
         {
-            _apiResponse = await _movieService.GetMovieAsync(imdbId);
-
-            _movieDetail = _apiResultConverter.ConvertMovieDetail(_apiResponse);
-
-            Movie = new MovieDetailWrapper(_movieDetail);
+            Movie = new MovieDetailWrapper(_apiResultConverter.ConvertMovieDetail(await _movieService.GetMovieAsync(imdbId)));
 
             IsFavorite = await _favoriteMovieDataService.IsExistAsync(Movie.Model);
         }
         private async void OnAddFavoriteExecuteAsync()
         {
-            if (_removed)
-                _movieDetail = _apiResultConverter.ConvertMovieDetail(_apiResponse);
+            _dbEntityNormalizer.MovieEntityNormalizer(Movie.Model);
 
-            _dbEntityNormalizer.MovieEntityNormalizer(_movieDetail);
-
-            await _favoriteMovieDataService.AddAsync(_movieDetail);
+            await _favoriteMovieDataService.AddAsync(Movie.Model);
             IsFavorite = true;
         }
         private async void OnRemoveFavoriteExecuteAsync()
@@ -84,7 +74,6 @@ namespace FavoriteMovies.Wpf.ViewModels
             await _favoriteMovieDataService.RemoveAsync(Movie.Model);
             Movie.Model.Id = 0;
             IsFavorite = false;
-            _removed = true;
         }
     }
 }

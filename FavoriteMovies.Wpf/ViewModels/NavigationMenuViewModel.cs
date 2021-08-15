@@ -13,13 +13,20 @@ namespace FavoriteMovies.Wpf.ViewModels
         {
             _eventAggregator = eventAggregator;
             OpenMovieDiscoverViewCommand = new DelegateCommand(OnOpenMovieDiscoverViewExecute);
+            OpenFavoriteListViewCommand = new DelegateCommand(OnOpenFavoriteListViewExecute);
         }
 
         public ICommand OpenMovieDiscoverViewCommand { get; }
+        public ICommand OpenFavoriteListViewCommand { get; }
 
         private void OnOpenMovieDiscoverViewExecute()
         {
             _eventAggregator.GetEvent<OpenMovieDiscoverViewEvent>().Publish();
+        }
+
+        private void OnOpenFavoriteListViewExecute()
+        {
+            _eventAggregator.GetEvent<OpenFavoriteListViewEvent>().Publish();
         }
     }
 }

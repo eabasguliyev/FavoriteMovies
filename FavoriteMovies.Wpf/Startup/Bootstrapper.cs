@@ -24,6 +24,7 @@ namespace FavoriteMovies.Wpf.Startup
             builder.RegisterType<MovieDiscoverViewModel>();
             builder.RegisterType<MovieDetailViewModel>();
             builder.RegisterType<NavigationMenuViewModel>();
+            builder.RegisterType<FavoriteListViewModel>();
 
             builder.RegisterType<ApiResultConverter>();
 

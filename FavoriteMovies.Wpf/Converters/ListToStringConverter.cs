@@ -15,9 +15,17 @@ namespace FavoriteMovies.Wpf.Converters
         {
             dynamic values = null;
 
-            if (value is List<Person> persons)
+            if (value is List<Actor> actors)
             {
-                values = persons;
+                values = actors;
+            }
+            else if (value is List<Writer> writers)
+            {
+                values = writers;
+            }
+            else if (value is List<Director> directors)
+            {
+                values = directors;
             }
             else if (value is List<Language> languages)
             {

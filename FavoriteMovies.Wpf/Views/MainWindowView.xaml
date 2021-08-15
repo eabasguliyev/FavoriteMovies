@@ -15,9 +15,9 @@
         <DataTemplate DataType="{x:Type viewModel:MovieDetailViewModel}">
             <view:MovieDetailView/>
         </DataTemplate>
-        <!--<DataTemplate DataType="{x:Type viewModel:NavigationMenuViewModel}">
-            <view:NavigationMenuView/>
-        </DataTemplate>-->
+        <DataTemplate DataType="{x:Type viewModel:FavoriteListViewModel}">
+            <view:FavoriteListView/>
+        </DataTemplate>
     </Window.Resources>
     <b:Interaction.Triggers>
         <b:EventTrigger EventName="Loaded">

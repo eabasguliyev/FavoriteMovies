@@ -10,15 +10,18 @@ namespace FavoriteMovies.Wpf.ViewModels
     {
         private readonly MovieDiscoverViewModel _movieDiscoverViewModel;
         private readonly Func<MovieDetailViewModel> _movieDetailViewModelCreator;
+        private readonly FavoriteListViewModel _favoriteListViewModel;
         private MovieDetailViewModel _movieDetailViewModel;
         private readonly IEventAggregator _eventAggregator;
         private ObservableObject _currentViewModel;
 
         public MainWindowViewModel(MovieDiscoverViewModel movieDiscoverViewModel,
-            Func<MovieDetailViewModel> movieDetailViewModelCreator, NavigationMenuViewModel navigationMenuViewModel, IEventAggregator eventAggregator)
+            Func<MovieDetailViewModel> movieDetailViewModelCreator, NavigationMenuViewModel navigationMenuViewModel, 
+            FavoriteListViewModel favoriteListViewModel, IEventAggregator eventAggregator)
         {
             _movieDiscoverViewModel = movieDiscoverViewModel;
             _movieDetailViewModelCreator = movieDetailViewModelCreator;
+            _favoriteListViewModel = favoriteListViewModel;
             _eventAggregator = eventAggregator;
 
             NavigationMenuViewModel = navigationMenuViewModel;
@@ -26,6 +29,7 @@ namespace FavoriteMovies.Wpf.ViewModels
 
             _eventAggregator.GetEvent<OpenMovieDetailViewEvent>().Subscribe(OnOpenMovieDetailView);
             _eventAggregator.GetEvent<OpenMovieDiscoverViewEvent>().Subscribe(OnOpenMovieDiscoverView);
+            _eventAggregator.GetEvent<OpenFavoriteListViewEvent>().Subscribe(OnOpenFavoriteListView);
         }
 
 
@@ -66,6 +70,10 @@ namespace FavoriteMovies.Wpf.ViewModels
         private void OnOpenMovieDiscoverView()
         {
             SwitchViewModel(_movieDiscoverViewModel);
+        }
+        private void OnOpenFavoriteListView()
+        {
+            SwitchViewModel(_favoriteListViewModel);
         }
     }
 }

@@ -15,8 +15,15 @@ namespace FavoriteMovies.EntityFramework.DatabaseNormalizer
         {
             foreach (var movieAndDirector in movieDetail.Directors)
             {
-                var director = _context.People.FirstOrDefault(p => p.Name == movieAndDirector.Director.Name);
-
+                Director director = null;
+                if (movieAndDirector.Director == null)
+                {
+                    director = _context.Directors.FirstOrDefault(d => d.Id == movieAndDirector.DirectorId);
+                }
+                else
+                {
+                    director = _context.Directors.FirstOrDefault(d => d.Name == movieAndDirector.Director.Name);
+                }
 
 
                 if (director != null)
@@ -25,17 +32,24 @@ namespace FavoriteMovies.EntityFramework.DatabaseNormalizer
                     movieAndDirector.Director = null;
                 }
 
-                //movieAndDirector.Id = 0;
+                movieAndDirector.Id = 0;
+                movieAndDirector.MovieId = 0;
+
             }
-
-            //var country = _context.Countries.SingleOrDefault(c => c.Name == movieDetail.Country.Name);
-
-            //if (country != null)
-            //    movieDetail.Country = country;
+            
 
             foreach (var movieAndCountry in movieDetail.Countries)
             {
-                var country = _context.Countries.FirstOrDefault(c => c.Name == movieAndCountry.Country.Name);
+                Country country = null;
+
+                if (movieAndCountry.Country == null)
+                {
+                    country = _context.Countries.FirstOrDefault(c => c.Id == movieAndCountry.CountryId);
+                }
+                else
+                {
+                    country = _context.Countries.FirstOrDefault(c => c.Name == movieAndCountry.Country.Name);
+                }
 
                 if (country != null)
                 {
@@ -43,12 +57,22 @@ namespace FavoriteMovies.EntityFramework.DatabaseNormalizer
                     movieAndCountry.Country = null;
                 }
 
-                //movieAndCountry.Id = 0;
+                movieAndCountry.Id = 0;
+                movieAndCountry.MovieId = 0;
             }
 
             foreach (var movieAndLanguage in movieDetail.Languages)
             {
-                var language = _context.Languages.FirstOrDefault(l => l.Name == movieAndLanguage.Language.Name);
+                Language language = null;
+
+                if (movieAndLanguage.Language == null)
+                {
+                    language = _context.Languages.FirstOrDefault(l => l.Id == movieAndLanguage.LanguageId);
+                }
+                else
+                {
+                    language = _context.Languages.FirstOrDefault(l => l.Name == movieAndLanguage.Language.Name);
+                }
 
                 if (language != null)
                 {
@@ -56,12 +80,23 @@ namespace FavoriteMovies.EntityFramework.DatabaseNormalizer
                     movieAndLanguage.Language = null;
                 }
 
-                //movieAndLanguage.Id = 0;
+                movieAndLanguage.Id = 0;
+                movieAndLanguage.MovieId = 0;
             }
 
             foreach (var movieAndWriter in movieDetail.Writers)
             {
-                var writer = _context.People.FirstOrDefault(p => p.Name == movieAndWriter.Writer.Name);
+                Writer writer = null;
+
+                if (movieAndWriter.Writer == null)
+                {
+                    writer = _context.Writers.FirstOrDefault(w => w.Id == movieAndWriter.WriterId);
+                }
+                else
+                {
+                    writer = _context.Writers.FirstOrDefault(w => w.Name == movieAndWriter.Writer.Name);
+                }
+
 
                 if (writer != null)
                 {
@@ -69,13 +104,23 @@ namespace FavoriteMovies.EntityFramework.DatabaseNormalizer
                     movieAndWriter.Writer = null;
                 }
 
-                //movieAndWriter.Id = 0;
+                movieAndWriter.Id = 0;
+                movieAndWriter.MovieId = 0;
             }
 
 
             foreach (var movieAndActor in movieDetail.Actors)
             {
-                var actor = _context.People.FirstOrDefault(p => p.Name == movieAndActor.Actor.Name);
+                Actor actor = null;
+
+                if (movieAndActor.Actor == null)
+                {
+                    actor = _context.Actors.FirstOrDefault(a => a.Id == movieAndActor.ActorId);
+                }
+                else
+                { 
+                    actor = _context.Actors.FirstOrDefault(p => p.Name == movieAndActor.Actor.Name);
+                }
 
                 if (actor != null)
                 {
@@ -83,12 +128,22 @@ namespace FavoriteMovies.EntityFramework.DatabaseNormalizer
                     movieAndActor.Actor = null;
                 }
 
-                //movieAndActor.Id = 0;
+                movieAndActor.Id = 0;
+                movieAndActor.MovieId = 0;
             }
 
             foreach (var movieAndGenre in movieDetail.Genres)
             {
-                var genre = _context.Genres.FirstOrDefault(g => g.Name == movieAndGenre.Genre.Name);
+                Genre genre = null;
+
+                if (movieAndGenre.Genre == null)
+                {
+                    genre = _context.Genres.FirstOrDefault(g => g.Id == movieAndGenre.GenreId);
+                }
+                else
+                {
+                    genre = _context.Genres.FirstOrDefault(g => g.Name == movieAndGenre.Genre.Name);
+                }
 
                 if (genre != null)
                 {
@@ -96,7 +151,8 @@ namespace FavoriteMovies.EntityFramework.DatabaseNormalizer
                     movieAndGenre.Genre = null;
                 }
 
-                //movieAndGenre.Id = 0;
+                movieAndGenre.Id = 0;
+                movieAndGenre.MovieId = 0;
             }
         }
     }

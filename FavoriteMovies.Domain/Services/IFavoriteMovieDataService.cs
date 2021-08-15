@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using FavoriteMovies.Domain.Models;
 
 namespace FavoriteMovies.Domain.Services
@@ -8,5 +9,6 @@ namespace FavoriteMovies.Domain.Services
         Task AddAsync(MovieDetail movie);
         Task RemoveAsync(MovieDetail movie);
         Task<bool> IsExistAsync(MovieDetail movie);
+        Task<List<MovieDetail>> GetAllAsync();
     }
 }

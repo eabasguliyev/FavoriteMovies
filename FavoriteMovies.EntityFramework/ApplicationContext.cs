@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using FavoriteMovies.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -17,7 +16,9 @@ namespace FavoriteMovies.EntityFramework
         public DbSet<MovieAndWriter> MovieAndWriters { get; set; }
         public DbSet<MovieAndLanguage> MovieAndLanguages { get; set; }
         public DbSet<MovieAndDirector> MovieAndDirectors { get; set; }
-        public DbSet<Person> People { get; set; }
+        public DbSet<Actor> Actors { get; set; }
+        public DbSet<Writer> Writers { get; set; }
+        public DbSet<Director> Directors { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -33,7 +34,9 @@ namespace FavoriteMovies.EntityFramework
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //modelBuilder.Entity<Person>().ToTable("People");
-            modelBuilder.Entity<Person>().Property(p => p.Name).HasMaxLength(255).IsRequired();
+            modelBuilder.Entity<Actor>().Property(p => p.Name).HasMaxLength(255).IsRequired();
+            modelBuilder.Entity<Writer>().Property(p => p.Name).HasMaxLength(255).IsRequired();
+            modelBuilder.Entity<Director>().Property(p => p.Name).HasMaxLength(255).IsRequired();
 
             //modelBuilder.Entity<Genre>().ToTable("Genres");
             modelBuilder.Entity<Genre>().Property(g => g.Name).HasMaxLength(255).IsRequired();
