@@ -29,7 +29,6 @@ namespace FavoriteMovies.Wpf.ViewModels
 
             AddFavoriteCommand = new DelegateCommand(OnAddFavoriteExecuteAsync);
             RemoveFavoriteCommand = new DelegateCommand(OnRemoveFavoriteExecuteAsync);
-            //LoadCommand = new DelegateCommand(OnLoadExecuteAsync);
         }
 
         public MovieDetailWrapper Movie
@@ -54,7 +53,6 @@ namespace FavoriteMovies.Wpf.ViewModels
 
         public ICommand AddFavoriteCommand { get; }
         public ICommand RemoveFavoriteCommand { get; }
-        //public ICommand LoadCommand { get; }
 
         public async void LoadMovieAsync(string imdbId)
         {
@@ -72,7 +70,10 @@ namespace FavoriteMovies.Wpf.ViewModels
         private async void OnRemoveFavoriteExecuteAsync()
         {
             await _favoriteMovieDataService.RemoveAsync(Movie.Model);
+
+            // entity normalize
             Movie.Model.Id = 0;
+            
             IsFavorite = false;
         }
     }

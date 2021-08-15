@@ -23,7 +23,7 @@ namespace FavoriteMovies.Wpf.ViewModels
             Movies = new ObservableCollection<MovieDetailWrapper>();
 
             LoadCommand = new DelegateCommand(OnLoadExecuteAsync);
-            OpenMovieDetailViewCommand = new DelegateCommand(OnOpenMovieDetailViewExecute);
+            OpenMovieDetailViewCommand = new DelegateCommand(OnOpenMovieDetailViewExecute, OnOpenMovieDetailViewCanExecute);
         }
 
         public ICommand LoadCommand { get; }
@@ -56,6 +56,11 @@ namespace FavoriteMovies.Wpf.ViewModels
         private void OnOpenMovieDetailViewExecute()
         {
             _eventAggregator.GetEvent<OpenMovieDetailViewEvent>().Publish(SelectedMovie.ImdbId);
+        }
+
+        private bool OnOpenMovieDetailViewCanExecute()
+        {
+            return SelectedMovie != null;
         }
     }
 }
