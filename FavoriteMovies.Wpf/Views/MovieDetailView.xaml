@@ -102,12 +102,15 @@
                     Margin="10 0 10 10"
                     Visibility="{Binding DataContext.IsFavorite, 
                 RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Converter={StaticResource NegVisConverterForAdd}}"
-                    HorizontalAlignment="Right" Command="{Binding DataContext.AddFavoriteCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
+                    HorizontalAlignment="Right" Command="{Binding DataContext.AddFavoriteCommand,
+                RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
             <Button Grid.Row="1" Width="200" Content="Remove from favorites"
                     Margin="10 0 10 10"
                     Visibility="{Binding DataContext.IsFavorite, 
                 RelativeSource={RelativeSource AncestorType={x:Type UserControl}}, Converter={StaticResource NegVisConverterForDel}}"
-                    HorizontalAlignment="Right"/>
+                    HorizontalAlignment="Right"
+                    Command="{Binding DataContext.RemoveFavoriteCommand,
+                RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
         </Grid>
     </Grid>
 </UserControl>

@@ -17,11 +17,15 @@ namespace FavoriteMovies.EntityFramework.DatabaseNormalizer
             {
                 var director = _context.People.FirstOrDefault(p => p.Name == movieAndDirector.Director.Name);
 
+
+
                 if (director != null)
                 {
                     movieAndDirector.DirectorId = director.Id;
                     movieAndDirector.Director = null;
                 }
+
+                //movieAndDirector.Id = 0;
             }
 
             //var country = _context.Countries.SingleOrDefault(c => c.Name == movieDetail.Country.Name);
@@ -38,6 +42,8 @@ namespace FavoriteMovies.EntityFramework.DatabaseNormalizer
                     movieAndCountry.CountryId = country.Id;
                     movieAndCountry.Country = null;
                 }
+
+                //movieAndCountry.Id = 0;
             }
 
             foreach (var movieAndLanguage in movieDetail.Languages)
@@ -49,6 +55,8 @@ namespace FavoriteMovies.EntityFramework.DatabaseNormalizer
                     movieAndLanguage.LanguageId = language.Id;
                     movieAndLanguage.Language = null;
                 }
+
+                //movieAndLanguage.Id = 0;
             }
 
             foreach (var movieAndWriter in movieDetail.Writers)
@@ -60,6 +68,8 @@ namespace FavoriteMovies.EntityFramework.DatabaseNormalizer
                     movieAndWriter.WriterId = writer.Id;
                     movieAndWriter.Writer = null;
                 }
+
+                //movieAndWriter.Id = 0;
             }
 
 
@@ -72,6 +82,8 @@ namespace FavoriteMovies.EntityFramework.DatabaseNormalizer
                     movieAndActor.ActorId = actor.Id;
                     movieAndActor.Actor = null;
                 }
+
+                //movieAndActor.Id = 0;
             }
 
             foreach (var movieAndGenre in movieDetail.Genres)
@@ -83,6 +95,8 @@ namespace FavoriteMovies.EntityFramework.DatabaseNormalizer
                     movieAndGenre.GenreId = genre.Id;
                     movieAndGenre.Genre = null;
                 }
+
+                //movieAndGenre.Id = 0;
             }
         }
     }

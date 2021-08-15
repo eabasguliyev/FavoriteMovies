@@ -23,7 +23,19 @@ namespace FavoriteMovies.Wpf.Data
 
         public async Task RemoveAsync(MovieDetail movie)
         {
-            _context.Movies.Remove(movie);
+            var deletable = _context.Movies.SingleOrDefault(m => m.ImdbId == movie.ImdbId);
+
+            if (deletable == null)
+                return; 
+            
+            _context.MovieAndActors.RemoveRange(_context.MovieAndActors.Where(ma => ma.MovieId == deletable.Id));
+            _context.MovieAndDirectors.RemoveRange(_context.MovieAndDirectors.Where(md => md.MovieId == deletable.Id));
+            _context.MovieAndGenres.RemoveRange(_context.MovieAndGenres.Where(mg => mg.MovieId == deletable.Id));
+            _context.MovieAndLanguages.RemoveRange(_context.MovieAndLanguages.Where(ml => ml.MovieId == deletable.Id));
+            _context.MovieAndWriters.RemoveRange(_context.MovieAndWriters.Where(mw => mw.MovieId == deletable.Id));
+
+            _context.Movies.Remove(deletable);
+
             await _context.SaveChangesAsync();
         }
 

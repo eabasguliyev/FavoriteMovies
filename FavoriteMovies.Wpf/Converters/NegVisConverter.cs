@@ -16,7 +16,7 @@ namespace FavoriteMovies.Wpf.Converters
             var isFavorite = (bool) value;
             // Negate false
             // Is Favorite false
-            // add visibility visibile
+            // add visibility visible
 
 
             if (!Negate && !isFavorite)
@@ -31,14 +31,14 @@ namespace FavoriteMovies.Wpf.Converters
 
             // negate true
             // is favorite false
-            // remove visiblity collapsed
+            // remove visibility collapsed
 
             if (Negate && !isFavorite)
                 return Visibility.Collapsed;
 
             // negate true
             // is favorite true
-            // remove visibility visibile
+            // remove visibility visible
 
             if (Negate && isFavorite)
                 return Visibility.Visible;
