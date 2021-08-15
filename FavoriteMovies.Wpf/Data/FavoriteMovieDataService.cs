@@ -10,12 +10,13 @@ namespace FavoriteMovies.Wpf.Data
 {
     public class FavoriteMovieDataService:IFavoriteMovieDataService
     {
-        private readonly ApplicationContext _context;
+        private ApplicationContext _context;
 
-        public FavoriteMovieDataService(ApplicationContext context)
+        public FavoriteMovieDataService(Task<ApplicationContext> context)
         {
-            _context = context;
+            LoadContextAsync(context);
         }
+
         public async Task AddAsync(MovieDetail movie)
         {
             _context.Movies.Add(movie);
@@ -48,6 +49,11 @@ namespace FavoriteMovies.Wpf.Data
         public async Task<List<MovieDetail>> GetAllAsync()
         {
             return await Task.Factory.StartNew(() => _context.Movies.ToList());
+        }
+
+        private async void LoadContextAsync(Task<ApplicationContext> context)
+        {
+            _context = await context;
         }
     }
 }

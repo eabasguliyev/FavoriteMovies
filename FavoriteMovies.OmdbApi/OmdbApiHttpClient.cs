@@ -14,29 +14,16 @@ namespace FavoriteMovies.OmdbApi
         }
 
 
-        public async Task<T> GetAsync<T>(string uri, string key = null)
+        public async Task<T> GetAsync<T>(string uri, string key = null) where T:class
         {
             HttpResponseMessage responseMessage = await GetAsync(uri);
 
-            
-            string jsonResponse = await responseMessage.Content.ReadAsStringAsync();
+            var jObject = JObject.Parse(await responseMessage.Content.ReadAsStringAsync());
 
-            string jsonStr = string.Empty;
+            if (jObject["Response"]?.ToString() == "False")
+                return null;
 
-
-            if (key != null)
-            {
-                var jObject = JObject.Parse(jsonResponse);
-
-                jsonStr = jObject[key].ToString();
-            }
-            else
-            {
-                jsonStr = jsonResponse;
-            }
-
-
-            return JsonConvert.DeserializeObject<T>(jsonStr);
+            return JsonConvert.DeserializeObject<T>(key != null ? jObject[key].ToString() : jObject.ToString());
         }
     }
 }

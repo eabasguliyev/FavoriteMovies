@@ -7,7 +7,7 @@ namespace FavoriteMovies.Wpf.Wrappers
     {
         public MovieWrapper(Movie model) : base(model)
         {
-            
+            ShortTitle = GetShortTitle(Model.Title);
         }
 
         public string ShortTitle { get; }

@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FavoriteMovies.OmdbApi", "F
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FavoriteMovies.Test", "FavoriteMovies.Test\FavoriteMovies.Test.csproj", "{F03E8369-E31B-4010-BEA6-3918EE912AFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FavoriteMovies.Wpf", "FavoriteMovies.Wpf\FavoriteMovies.Wpf.csproj", "{E65955A4-0593-4221-B770-3D8680A2AC61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FavoriteMovies.Wpf", "FavoriteMovies.Wpf\FavoriteMovies.Wpf.csproj", "{E65955A4-0593-4221-B770-3D8680A2AC61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

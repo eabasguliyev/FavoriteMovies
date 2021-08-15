@@ -1,16 +1,23 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using FavoriteMovies.Domain.Models;
 
 namespace FavoriteMovies.EntityFramework.DatabaseNormalizer
 {
     public class DbEntityNormalizer
     {
-        private readonly ApplicationContext _context;
+        private ApplicationContext _context;
 
-        public DbEntityNormalizer(ApplicationContext context)
+        public DbEntityNormalizer(Task<ApplicationContext> context)
         {
-            _context = context;
+            LoadContextAsync(context);
         }
+
+        private async void LoadContextAsync(Task<ApplicationContext> context)
+        {
+            _context = await context;
+        }
+
         public void MovieEntityNormalizer(MovieDetail movieDetail)
         {
             foreach (var movieAndDirector in movieDetail.Directors)

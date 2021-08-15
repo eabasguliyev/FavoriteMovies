@@ -1,5 +1,9 @@
-﻿using Autofac;
+﻿using System.Threading.Tasks;
+using Autofac;
+using FavoriteMovies.Domain.Models;
 using FavoriteMovies.Domain.Services;
+using FavoriteMovies.Domain.Services.Api.Results;
+using FavoriteMovies.Domain.Services.File;
 using FavoriteMovies.EntityFramework;
 using FavoriteMovies.EntityFramework.DatabaseNormalizer;
 using FavoriteMovies.OmdbApi.Services;
@@ -32,9 +36,19 @@ namespace FavoriteMovies.Wpf.Startup
 
             builder.RegisterType<FavoriteMovieDataService>().As<IFavoriteMovieDataService>();
 
-            builder.RegisterType<ApplicationContext>();
+            //builder.RegisterType<ApplicationContext>();
 
             builder.RegisterType<DbEntityNormalizer>();
+
+            builder.RegisterType<MovieFileDataService>().As<IFileDataService<MovieResult>>();
+
+            // doesn't work as expected
+
+            builder.Register(async context =>
+            {
+                return await Task.Factory.StartNew(() => new ApplicationContext());
+            });
+
             return builder.Build();
         }
     }
