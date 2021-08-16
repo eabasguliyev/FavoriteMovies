@@ -85,9 +85,15 @@ namespace FavoriteMovies.Wpf.ViewModels
 
             // filter search results
             if (movieResults == null)
+            {
+                if (movies?.Any() == false)
+                {
+                    Movies.Clear();
+                }
                 return;
+            }
 
-            var filteredMovies = FilterMovieResults(moviesFromFile);
+            var filteredMovies = FilterMovieResults(movieResults);
 
             if (filteredMovies.Count == 0)
             {

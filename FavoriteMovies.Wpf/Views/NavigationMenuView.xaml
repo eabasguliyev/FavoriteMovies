@@ -20,8 +20,8 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1">
-            <Button Content="Discover" Margin="10" Command="{Binding OpenMovieDiscoverViewCommand}"/>
-            <Button Content="Favorites" Margin="10 0 10 10" Command="{Binding OpenFavoriteListViewCommand}"/>
+            <Button Content="Discover" Margin="0 10 0 2" Command="{Binding OpenMovieDiscoverViewCommand}"/>
+            <Button Content="Favorites" Margin="0 0 0 2" Command="{Binding OpenFavoriteListViewCommand}"/>
         </StackPanel>
     </Grid>
 </UserControl>
