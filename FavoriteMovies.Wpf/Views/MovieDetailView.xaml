@@ -96,7 +96,7 @@
                    Source="{Binding PosterLink, Mode=OneWay}"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Top"
-                   Stretch="UniformToFill"/>
+                   Stretch="Fill"/>
 
             <Button Grid.Row="1" Width="200" Content="Add to favorites"
                     Margin="10 0 10 10"

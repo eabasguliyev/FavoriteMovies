@@ -6,8 +6,15 @@
         xmlns:view="clr-namespace:FavoriteMovies.Wpf.Views"
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:viewModel="clr-namespace:FavoriteMovies.Wpf.ViewModels"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Favorite Movies" Height="450" Width="800">
+        Title="Favorite Movies" Height="450" Width="820"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}">
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewModel:MovieDiscoverViewModel}">
             <view:MovieDiscoverView/>

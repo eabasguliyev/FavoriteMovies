@@ -13,7 +13,7 @@
         </b:EventTrigger>
     </b:Interaction.Triggers>
     <Grid>
-        <ListBox Margin="10" ItemsSource="{Binding Movies}"
+        <ListBox Margin="5 10 10 10" ItemsSource="{Binding Movies}"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                  SelectedItem="{Binding SelectedMovie}">
             <ListBox.ItemsPanel>
@@ -23,16 +23,16 @@
             </ListBox.ItemsPanel>
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Grid ToolTip="{Binding Title, Mode=OneWay}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <Image Grid.Row="0" Source="{Binding PosterLink}"
+                        <Image Grid.Row="0" Source="{Binding PosterLink, Mode=OneWay}"
                                Width="150"
                                Height="200"
-                               Stretch="UniformToFill"/>
+                               Stretch="Fill"/>
 
                         <TextBlock Grid.Row="1" Text="{Binding ShortTitle, Mode=OneWay}"
                                    HorizontalAlignment="Center"/>

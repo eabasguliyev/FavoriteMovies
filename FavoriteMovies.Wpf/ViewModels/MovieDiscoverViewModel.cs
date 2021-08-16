@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
@@ -83,6 +84,8 @@ namespace FavoriteMovies.Wpf.ViewModels
 
             var movieResults = await apiResults;
 
+            SetDefaultImage(movieResults);
+
             // filter search results
             if (movieResults == null)
             {
@@ -105,6 +108,16 @@ namespace FavoriteMovies.Wpf.ViewModels
             _movieFileDataService.Write(_fileName, moviesFromFile);
 
             LoadMovies(filteredMovies, isAppend);
+        }
+
+        private void SetDefaultImage(List<MovieResult> movieResults)
+        {
+            foreach (var movieResult in movieResults)
+            {
+                if(movieResult.Poster == "N/A")
+                    movieResult.Poster =
+                        "https://i.ibb.co/qktr3Sq/default-Image.png";
+            }
         }
 
         private List<MovieResult> SearchFromFile(ref List<MovieResult> moviesFromFile, ref bool isAppend)
