@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using FavoriteMovies.Domain.Models;
 using FavoriteMovies.Domain.Services.Api.Results;
@@ -20,13 +21,20 @@ namespace FavoriteMovies.Wpf.Data
         {
             using StreamReader file = File.OpenText(fileName);
 
-            return (List<MovieResult>)_serializer.Deserialize(file, typeof(List<MovieResult>));
+            try
+            {
+                return (List<MovieResult>)_serializer.Deserialize(file, typeof(List<MovieResult>));
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public void Write(string fileName, List<MovieResult> movies)
         {
             using StreamWriter file = File.CreateText(fileName);
-
+            
             _serializer.Serialize(file, movies);
         }
     }

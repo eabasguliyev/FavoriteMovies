@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FavoriteMovies.EntityFramew
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FavoriteMovies.OmdbApi", "FavoriteMovies.OmdbApi\FavoriteMovies.OmdbApi.csproj", "{25E7238D-C4F6-40F8-97A5-B4B1FBE3E273}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FavoriteMovies.Test", "FavoriteMovies.Test\FavoriteMovies.Test.csproj", "{F03E8369-E31B-4010-BEA6-3918EE912AFD}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FavoriteMovies.Wpf", "FavoriteMovies.Wpf\FavoriteMovies.Wpf.csproj", "{E65955A4-0593-4221-B770-3D8680A2AC61}"
 EndProject
 Global
@@ -31,10 +29,6 @@ Global
 		{25E7238D-C4F6-40F8-97A5-B4B1FBE3E273}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25E7238D-C4F6-40F8-97A5-B4B1FBE3E273}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25E7238D-C4F6-40F8-97A5-B4B1FBE3E273}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F03E8369-E31B-4010-BEA6-3918EE912AFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F03E8369-E31B-4010-BEA6-3918EE912AFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F03E8369-E31B-4010-BEA6-3918EE912AFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F03E8369-E31B-4010-BEA6-3918EE912AFD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E65955A4-0593-4221-B770-3D8680A2AC61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E65955A4-0593-4221-B770-3D8680A2AC61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E65955A4-0593-4221-B770-3D8680A2AC61}.Release|Any CPU.ActiveCfg = Release|Any CPU

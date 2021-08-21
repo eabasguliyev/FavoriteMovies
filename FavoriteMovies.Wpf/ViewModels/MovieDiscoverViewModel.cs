@@ -94,14 +94,14 @@ namespace FavoriteMovies.Wpf.ViewModels
                 return;
             }
             
-            SetDefaultImage(movieResults);
-
             var filteredMovies = FilterMovieResults(movieResults);
 
             if (filteredMovies.Count == 0)
             {
                 return;
             }
+
+            SetDefaultImage(movieResults);
 
             moviesFromFile?.AddRange(filteredMovies);
 
@@ -126,7 +126,23 @@ namespace FavoriteMovies.Wpf.ViewModels
             {
                 moviesFromFile = _movieFileDataService.Read(_fileName) ?? new List<MovieResult>();
 
-                return moviesFromFile.Where(mff => mff.Title.ToLower().Contains(Text.ToLower())).ToList();
+                return moviesFromFile.Where(mff =>
+                {
+                    var titleArr = mff.Title.ToLower().Split(" ");
+                    var textArr = Text.ToLower().Split(" ");
+
+                    var counter = 0;
+
+                    foreach (var key in titleArr)
+                    {
+                        if (textArr.Contains(key))
+                            counter++;
+                    }
+
+                    if (counter >= textArr.Length)
+                        return true;
+                    return false;
+                }).ToList();
             }
 
             moviesFromFile = new List<MovieResult>();
