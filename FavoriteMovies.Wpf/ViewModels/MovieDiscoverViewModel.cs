@@ -82,9 +82,7 @@ namespace FavoriteMovies.Wpf.ViewModels
                 isAppend = true;
             }
 
-            var movieResults = await apiResults;
-
-            SetDefaultImage(movieResults);
+            var movieResults = await apiResults;        
 
             // filter search results
             if (movieResults == null)
@@ -95,6 +93,8 @@ namespace FavoriteMovies.Wpf.ViewModels
                 }
                 return;
             }
+            
+            SetDefaultImage(movieResults);
 
             var filteredMovies = FilterMovieResults(movieResults);
 
