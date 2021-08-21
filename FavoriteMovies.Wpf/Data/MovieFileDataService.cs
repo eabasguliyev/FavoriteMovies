@@ -13,6 +13,7 @@ namespace FavoriteMovies.Wpf.Data
 
         public MovieFileDataService()
         {
+        
             _serializer = new JsonSerializer();
         }
         public List<MovieResult> Read(string fileName)
